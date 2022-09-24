@@ -1,0 +1,35 @@
+{
+  "env": {
+    "browser": false,
+    "commonjs": true,
+    "mocha": true,
+    "node": true
+  },
+  "extends": "eslint:recommended",
+  "globals": {
+  },
+  "parserOptions": {
+    "ecmaVersion": 12,
+    "sourceType": "script"
+  },
+  "rules": {
+    "array-bracket-spacing": "warn",
+    "complexity": "warn",
+    "default-case": "warn",
+    "eqeqeq": "error",
+    "no-console": "off",
+    "no-duplicate-imports": "warn",
+    "no-extra-bind": "warn",
+    "no-invalid-this": "error",
+    "no-new-wrappers": "error",
+    "no-path-concat": "off",
+    "no-process-exit": "off",
+    "no-useless-return": "warn",
+    "no-sync": "off",
+    "no-undef": "warn",
+    "no-undef-init": "warn",
+    "no-use-before-define": "error",
+    "no-useless-escape": "warn",
+    "no-var": "error"
+  }
+}

@@ -1,0 +1,26 @@
+# EditorConfig: http://EditorConfig.org
+
+# How to use:
+# Copy this file (as .editorconfig) to the directory of the project files,
+# or any parent directory. A search for .editorconfig files will stop
+# if the root filepath is reached or an EditorConfig file with root=true is found.
+
+# Top-most EditorConfig file. (Stop looking once this file is found.)
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+indent_size = 4
+indent_style = space
+insert_final_newline = false
+max_line_length = 120
+tab_width = 4
+trim_trailing_whitespace = true
+
+[{*.bash,*.json,*.sh,*.yaml,*.yml*.zsh}]
+indent_size = 2
+tab_width = 2
+
+[*.md]
+trim_trailing_whitespace = false
