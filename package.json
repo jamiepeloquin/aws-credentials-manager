@@ -1,0 +1,48 @@
+{
+  "name": "aws-credentials-manager",
+  "version": "1.0.0",
+  "description": "A CLI tool to easily update/rotate your AWS IAM password and Access Keys.",
+  "main": "bin/index.js",
+  "bin": {
+    "awscreds": "./bin/index.js"
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "lint": "eslint ./bin/index.js ./lib/**/*.js ./test/**/*.spec.js",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jamiepeloquin/aws-credentials-manager.git"
+  },
+  "keywords": [
+    "aws-iam",
+    "aws-credentials",
+    "cli-tool",
+    "aws-iam-password",
+    "aws-iam-access-key"
+  ],
+  "author": "Jamie Peloquin <jamie@jamiepeloquin.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jamiepeloquin/aws-credentials-manager/issues"
+  },
+  "homepage": "https://github.com/jamiepeloquin/aws-credentials-manager#readme",
+  "dependencies": {
+    "aws-sdk": "^2.1230.0",
+    "chalk": "^5.1.0",
+    "debug": "^4.3.4",
+    "figlet": "^1.5.2",
+    "ini": "^3.0.1",
+    "inquirer": "^9.1.2"
+  },
+  "devDependencies": {
+    "@types/figlet": "^1.5.5",
+    "@types/node": "^18.8.2",
+    "aws-sdk-mock": "^5.7.0",
+    "eslint": "^8.24.0"
+  }
+}
