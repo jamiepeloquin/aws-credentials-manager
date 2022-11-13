@@ -1,0 +1,7 @@
+[profile default]
+output=text
+region=us-east-2
+
+[profile testing]
+output=json
+region=us-east-1

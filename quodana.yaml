@@ -1,0 +1,3 @@
+bootstrap: |+
+  set -eu
+  npm install
