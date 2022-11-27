@@ -8,6 +8,7 @@ describe('AwsTools', () => {
 
     const _awsTools = require('../lib/AwsTools.js');
     const AWS = require('aws-sdk-mock');
+    AWS.setSDKInstance(require('aws-sdk'));
 
     const _accessKeys = require('./data/accessKeys.json');
 
@@ -175,7 +176,7 @@ describe('AwsTools', () => {
     describe('deleteAwsAccessKey()', () => {
 
         test('Should delete an access key.', async () => {
-            expect(await awsTools.deleteAccessKey(_accessKeys[0], PROFILE_NAME)).resolves.toBeUndefined();
+            expect(await awsTools.deleteAccessKey(_accessKeys[0], PROFILE_NAME)).toBeUndefined();
         });
     })
 
@@ -195,11 +196,11 @@ describe('AwsTools', () => {
     describe('fetchProfiles()', () => {
 
         it('Should return an object.', () => {
-            expect(typeof awsTools.fetchProfiles()).toBe('object');
+            expect(typeof _awsTools.fetchProfiles()).toBe('object');
         });
 
         it('Should return an object with a length of 2.', () => {
-            const result = awsTools.fetchProfiles(PROFILE_NAME);
+            const result = _awsTools.fetchProfiles(PROFILE_NAME);
             expect(Object.keys(result).length).toBe(2);
         });
     });
