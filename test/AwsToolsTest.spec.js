@@ -1,13 +1,14 @@
 const {join} = require('path');
+const _awsTools = require('../lib/AwsTools.js');
+const AWS = require('aws-sdk-mock');
+const fs = require('fs');
 
-describe('AwsTools', () => {
+describe('AwsTools', (object, method) => {
 
     process.env['AWS_CONFIG_FILE'] = join(__dirname, "/data/config")
     process.env['AWS_SHARED_CREDENTIALS_FILE'] = join(__dirname, '/data/credentials');
     process.env['AWS_SDK_LOAD_CONFIG'] = "1"
 
-    const _awsTools = require('../lib/AwsTools.js');
-    const AWS = require('aws-sdk-mock');
     AWS.setSDKInstance(require('aws-sdk'));
 
     const _accessKeys = require('./data/accessKeys.json');
@@ -39,12 +40,12 @@ describe('AwsTools', () => {
     const awsTools = new _awsTools(PROFILE_NAME);
 
     beforeEach(() => {
-        AWS.mock('IAM', 'changePassword');
+        AWS.mock('IAM', 'changePassword', void 0);
         AWS.mock('IAM', 'createAccessKey', {
             AccessKey: ACCESS_KEYS[2]
         });
-        AWS.mock('IAM', 'deleteAccessKey');
-        AWS.mock('IAM', 'updateAccessKey');
+        AWS.mock('IAM', 'deleteAccessKey', void 0);
+        AWS.mock('IAM', 'updateAccessKey', void 0);
         AWS.mock('IAM', 'listAccessKeys', (params, callback) => {
             callback(null, {
                 AccessKeyMetadata: ACCESS_KEYS
@@ -114,11 +115,10 @@ describe('AwsTools', () => {
         });
     })
 
-    describe('createAwsAccessKey()', () => {
+    describe('createAwsAccessKey()', (object, method) => {
 
             test('Should return an access key, and not save a backup.', async () => {
-                const fs = require('fs');
-                const spy = jest.spyOn(fs, 'writeFileSync');
+                const spy = jest.spyOn(fs, 'writeFileSync').mockImplementation(() => {});
                 const accessKey = await awsTools.createAwsAccessKey(PROFILE_NAME);
                 expect(accessKey).toHaveProperty('AccessKey');
                 expect(accessKey.AccessKey).toHaveProperty('AccessKeyId');
@@ -127,7 +127,6 @@ describe('AwsTools', () => {
             });
 
             test('Should return an access key, and save a backup.', async () => {
-                const fs = require('fs');
                 const spyWrite = jest.spyOn(fs, 'writeFileSync').mockImplementation(() => {});
                 const spyCopy = jest.spyOn(fs, 'copyFileSync').mockImplementation(() => {});
                 const accessKey = await awsTools.createAwsAccessKey(PROFILE_NAME, true);
@@ -139,7 +138,6 @@ describe('AwsTools', () => {
             });
 
             test('Should replace the current AccessKey with the new one, but will not disable old key on failure.', async () => {
-                const fs = require('fs');
                 const spyWrite = jest.spyOn(fs, 'writeFileSync').mockImplementation(() => {
                     throw new Error();
                 });

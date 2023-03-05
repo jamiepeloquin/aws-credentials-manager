@@ -2,6 +2,9 @@
   "name": "aws-credentials-manager",
   "version": "1.0.0",
   "description": "A CLI tool to easily update/rotate your AWS IAM password and Access Keys.",
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "main": "bin/index.js",
   "bin": {
     "awscreds": "./bin/index.js"
@@ -39,7 +42,7 @@
     "figlet": "^1.5.2",
     "generate-password": "^1.7.0",
     "ini": "^3.0.1",
-    "inquirer": "^9.1.2"
+    "inquirer": "^8.2.0"
   },
   "devDependencies": {
     "@types/figlet": "^1.5.5",
